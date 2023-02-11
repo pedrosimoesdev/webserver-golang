@@ -5,14 +5,18 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 )
 
 type Values struct {
 	AppVersion string
+	Row        string
 }
 
 func main() {
 	log.SetFlags(log.Lshortfile)
+
+	appVersion := os.Getenv("version")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl, err := template.ParseFiles("index.html")
@@ -21,7 +25,8 @@ func main() {
 		}
 
 		data := Values{
-			AppVersion: string("test"),
+			AppVersion: appVersion,
+			Row:        string("test 123"),
 		}
 
 		err = tmpl.Execute(w, data)
