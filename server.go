@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
 )
 
 type Values struct {
@@ -16,7 +15,7 @@ type Values struct {
 func main() {
 	log.SetFlags(log.Lshortfile)
 
-	appVersion := os.Getenv("version")
+	appVersion := "bad versions with bad developer loooool"
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl, err := template.ParseFiles("index.html")
